@@ -46,23 +46,24 @@ def main():
         s_exit = position_state_dict[position_exit[0], position_exit[1]]
         if s_current == s_exit:
             continue
-        a_next = sarsa(s_current, sarsa.q_values)     # gets the action from the policy
+        a_next = sarsa(s_current, sarsa.q_values)     # gets the action from the policy (see __call__ method)
         while s_current != s_exit:
             no_steps += 1
             _, r_next, _ = _dungeon.step(a_next)
             position_agent = _dungeon.position_agent
             s_next = position_state_dict[position_agent[0], position_agent[1]]
-            a_next_next = sarsa(s_next, sarsa.q_values)
+            a_next_next = sarsa(s_next, sarsa.q_values)     # gets the action from the policy (see __call__ method)
             sarsa.update_values(s_current, a_next, r_next, s_next, a_next_next)
             s_current = s_next
             a_next = a_next_next
         q_values = sarsa.q_values
-        print("For episode " + str(_ep + 1) + " the number of steps were " + str(no_steps) + " epsilon was " + str(sarsa.epsilon))
+        print("For episode " + str(_ep + 1) + " the number of steps were " + str(no_steps) + " with epsilon " + str(sarsa.epsilon))
         no_of_steps.append(no_steps)
         epsilons.append(sarsa.epsilon)
         epsilon = sarsa.update_epsilon()
-    print("Q values")
-    print(q_values)
+    print("Cell    Q values")
+    for i in range(N * N):
+        print(i + 1, "   ", q_values[i])
     sarsa.display_values(no_of_steps, epsilons)
 
 if __name__ == "__main__":
