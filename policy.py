@@ -4,12 +4,11 @@ import numpy as np
 
 class E_Greedy_Policy():
     
-    def __init__(self, env, epsilon, decay, Action):
+    def __init__(self, env, epsilon, decay):
         self.epsilon = epsilon
         self.decay = decay
         self.action_dict = {0:"up", 1: "down", 2:"left", 3:"right"}
         self.action_id_dict = {v: k for k, v in self.action_dict.items()}
-        self.Action = Action
         self.coord_to_state = {}
 
         

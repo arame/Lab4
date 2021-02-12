@@ -16,7 +16,7 @@
 # You can use your own or use the one provided in this lab.
 # 
 
-from dungeon.dungeon import Dungeon, Action
+from dungeon.dungeon import Dungeon
 from sarsa import SARSA
 from mc import MC_control
 import numpy as np
@@ -39,7 +39,7 @@ def main():
     for _ep in range(total_episodes):
         no_steps = 0
         _ = _dungeon.reset()
-        sarsa = SARSA(_dungeon, epsilon, decay, alpha, gamma, Action, q_values)
+        sarsa = SARSA(_dungeon, epsilon, decay, alpha, gamma, q_values)
         position_agent = _dungeon.position_agent
         s_current = position_state_dict[position_agent[0], position_agent[1]]
         position_exit = _dungeon.position_exit

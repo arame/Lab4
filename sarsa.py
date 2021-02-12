@@ -20,8 +20,8 @@ import math
 
 class SARSA(E_Greedy_Policy):
     # alpha - step size, learning rate, how fast to modify the values
-    def __init__(self, env, epsilon, decay, alpha, gamma, Action, q_values):
-        super().__init__(env, epsilon, decay, Action)
+    def __init__(self, env, epsilon, decay, alpha, gamma, q_values):
+        super().__init__(env, epsilon, decay)
         self.alpha = alpha
         self.gamma = gamma
         self.q_values = q_values
@@ -38,7 +38,7 @@ class SARSA(E_Greedy_Policy):
     def display_values(self, no_of_steps, epsilons):
         # display the values learned. As you have 4 q-values per state, 
         # you can decide to display the values of the state when taking the best action.
-        plt.plot(no_of_steps,'r--')
+        plt.plot(no_of_steps,'r-')
         plt.show()
 
         #plt.imshow(self.q_values, cmap='hot', interpolation='nearest')
@@ -46,5 +46,5 @@ class SARSA(E_Greedy_Policy):
         ax.axis([0, len(self.q_values), 0, 3])
         plt.show()
 
-        plt.plot(epsilons, 'b--')
+        plt.plot(epsilons, 'b-')
         plt.show()
